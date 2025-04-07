@@ -1,0 +1,39 @@
+---
+const { title, href, type } = Astro.props;
+---
+
+<div class="item">
+  <a href={href} download>{title}</a>
+  <button class="details-btn" onclick={`openModal('${type}')`}
+    >Ver detalles</button
+  >
+</div>
+
+<style>
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0;
+  }
+
+  .item a {
+    color: #94e0ff;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .item a:hover {
+    text-decoration: underline;
+  }
+
+  .details-btn {
+    background-color: #2dd4bf;
+    border: none;
+    color: #000;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+</style>

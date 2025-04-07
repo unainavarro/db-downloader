@@ -1,0 +1,97 @@
+---
+import CardItem from "./CardItem.astro";
+import CardModal from "./CardModal.astro";
+
+interface Item {
+  title: string;
+  href: string;
+  type: string;
+}
+
+const { chapter, language, description, items } = Astro.props as {
+  chapter: string;
+  language: string;
+  description: string;
+  items: Item[];
+};
+---
+
+<div class="container">
+  <div class="chapter-label">{chapter}</div>
+  <h2>{language}</h2>
+  <p>{description}</p>
+
+  {
+    items.map((item) => (
+      <CardItem title={item.title} href={item.href} type={item.type} />
+    ))
+  }
+</div>
+
+<CardModal />
+
+<style>
+  .container {
+    max-width: 600px;
+    background-color: #0f2b40;
+    margin: 60px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    position: relative;
+  }
+
+  .chapter-label {
+    background-color: #1c2b64;
+    padding: 5px 12px;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+</style>
+
+<script is:inline>
+  let details = {};
+
+  fetch("../data/details.json")
+    .then((response) => response.json())
+    .then((data) => {
+      details = data;
+    })
+    .catch((err) => {
+      console.error("Error al cargar detalles:", err);
+    });
+
+  function openModal(type) {
+    const modal = document.getElementById("detailsModal");
+    const title = document.getElementById("modalTitle");
+    const desc = document.getElementById("modalDescription");
+    const content = document.getElementById("modalContent");
+
+    const info = details[type];
+
+    title.innerText = type;
+    desc.innerText = info?.description || "Sin descripción disponible.";
+    content.innerHTML = "";
+
+    if (info?.items?.length) {
+      info.items.forEach((item) => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        content.appendChild(li);
+      });
+    } else {
+      const li = document.createElement("li");
+      li.innerText = "No hay detalles disponibles.";
+      content.appendChild(li);
+    }
+
+    modal.style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("detailsModal").style.display = "none";
+  }
+</script>

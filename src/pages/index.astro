@@ -1,8 +1,48 @@
 ---
-import Title from "../components/Title.astro";
 import Layout from "../layouts/Layout.astro";
+
+import Card from "../components/Card.astro";
+import Title from "../components/Title.astro";
 ---
 
 <Layout>
   <Title />
+
+  <Card
+    chapter="SQL"
+    language="MySQL"
+    description={`Explora nuestra colección de bases de datos MySQL, diseñadas para facilitar
+    tus proyectos y experimentos. Desde ejemplos básicos hasta estructuras más
+    avanzadas, encontrarás recursos listos para implementar en tus aplicaciones.`}
+    items={[
+      { title: "Base de datos básica", href: "mysql/test.sql", type: "basica" },
+      {
+        title: "Librería",
+        href: "#",
+        type: "comercio",
+      },
+      {
+        title: "Consultora",
+        href: "#",
+        type: "empresaria",
+      },
+      {
+        title: "Colegio",
+        href: "#",
+        type: "personalizada",
+      },
+    ]}
+  />
+
+  <Card
+    chapter="NoSQL"
+    language="MongoDB"
+    description={`Explora nuestra colección de bases de datos MongoDB, diseñadas para facilitar
+    tus proyectos y experimentos. Desde ejemplos básicos hasta estructuras más
+    avanzadas, encontrarás recursos listos para implementar en tus aplicaciones.`}
+    items={[
+      { title: "CMS", href: "#", type: "usuarios" },
+      { title: "Bar", href: "#", type: "productos" },
+    ]}
+  />
 </Layout>
