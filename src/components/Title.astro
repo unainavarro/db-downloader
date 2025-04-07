@@ -1,0 +1,46 @@
+---
+
+---
+
+<div style="text-align: center;">
+  <h1 class="fancy-title">DB-Downloader</h1>
+</div>
+
+<style>
+  .fancy-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 3rem;
+    background: linear-gradient(270deg, #2dd4bf, #60a5fa, #a78bfa);
+    background-size: 600% 600%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    animation:
+      gradientMove 4s ease infinite,
+      zoomIn 1.5s ease;
+  }
+
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes zoomIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
